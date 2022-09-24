@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: common
+  name: role-configmap-reader
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch"]
+    resources: ["configmaps", "pods", "services", "endpoints", "secrets"]

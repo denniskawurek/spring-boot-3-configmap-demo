@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configmap-demo
+  namespace: common
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configmap-demo
+  template:
+    metadata:
+      labels:
+        app: configmap-demo
+    spec:
+      serviceAccountName: configmap-reader # 1
+      containers:
+        - name: configmap-demo
+          image: configmap-demo-v1:latest
+          imagePullPolicy: Never
