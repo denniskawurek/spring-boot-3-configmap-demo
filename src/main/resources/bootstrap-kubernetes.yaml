@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: configmap-demo
+  config:
+    activate:
+      on-profile: kubernetes # 1
+  cloud:
+    kubernetes:
+      enabled: true # 2
+      reload:
+        enabled: true # 3
+        mode: event # 4
+      config:
+        enabled: true # 5
+        name: configmap-demo
+        namespace: common
+        sources:
+          - name: configmap-demo
+        enableVersioning: true
+      client:
+        namespace: common
