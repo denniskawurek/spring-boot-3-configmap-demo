@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: configmap-demo
+  config:
+    activate:
+      on-profile: default
+  cloud:
+    config:
+      enabled: false
+    kubernetes:
+      enabled: false
+info:
+  app:
+    version: "1.0"

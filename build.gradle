@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '3.0.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'java'
+}
+
+group = 'de.dkwr'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+ext {
+	set('springCloudVersion', "2022.0.0-M3") // 2
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-client-config' // 4
+	implementation 'org.springframework.cloud:spring-cloud-config-client'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator' // 5
+	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" // 3
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
